@@ -1,0 +1,239 @@
+@use 'variables' as *;
+@use 'mixins' as m;
+
+:root {
+  --font: #{$font-stack};
+  --color-bg: #eef2f6;
+  --color-surface: #ffffff;
+  --color-ink: #0f172a;
+  --color-ink-muted: #64748b;
+  --color-border: #e2e8f0;
+  --color-primary: #0f766e;
+  --color-primary-hover: #0d5f59;
+  --color-primary-dark: #0d5f59;
+  --color-primary-soft: rgba(15, 118, 110, 0.1);
+  --color-secondary-ink: #f8fafc;
+  --color-accent: #b45309;
+  --color-error: #b91c1c;
+  --color-error-soft: #fef2f2;
+  --color-success: #15803d;
+  --color-success-soft: #dcfce7;
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 12px 40px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 24px 64px rgba(15, 23, 42, 0.12);
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  --color-bg: #0b1220;
+  --color-surface: #111c2f;
+  --color-ink: #e5edf8;
+  --color-ink-muted: #9fb1c8;
+  --color-border: #23324a;
+  --color-primary: #5eead4;
+  --color-primary-hover: #2dd4bf;
+  --color-primary-dark: #99f6e4;
+  --color-primary-soft: rgba(45, 212, 191, 0.16);
+  --color-secondary-ink: #08111c;
+  --color-accent: #f59e0b;
+  --color-error: #fca5a5;
+  --color-error-soft: #351212;
+  --color-success: #4ade80;
+  --color-success-soft: #0f2a1b;
+  --shadow-sm: 0 1px 2px rgba(2, 6, 23, 0.38);
+  --shadow-md: 0 18px 44px rgba(2, 6, 23, 0.48);
+  --shadow-lg: 0 28px 72px rgba(2, 6, 23, 0.58);
+  color-scheme: dark;
+}
+
+:root[data-theme='sunrise'] {
+  --color-bg: #fff5ec;
+  --color-surface: #fffdf9;
+  --color-ink: #402218;
+  --color-ink-muted: #8b6b5d;
+  --color-border: #f0d8c7;
+  --color-primary: #c96b2c;
+  --color-primary-hover: #af5820;
+  --color-primary-dark: #8f4516;
+  --color-primary-soft: rgba(201, 107, 44, 0.14);
+  --color-secondary-ink: #fff7ef;
+  --color-accent: #b45309;
+  --color-error: #b23a48;
+  --color-error-soft: #fff0f1;
+  --color-success: #2f855a;
+  --color-success-soft: #ebf8f1;
+  --shadow-sm: 0 1px 2px rgba(122, 74, 44, 0.08);
+  --shadow-md: 0 14px 40px rgba(122, 74, 44, 0.12);
+  --shadow-lg: 0 24px 60px rgba(122, 74, 44, 0.16);
+  color-scheme: light;
+}
+
+:root[data-theme='forest'] {
+  --color-bg: #edf4ef;
+  --color-surface: #fbfdfb;
+  --color-ink: #163127;
+  --color-ink-muted: #5b7469;
+  --color-border: #d2e2d7;
+  --color-primary: #2f6f54;
+  --color-primary-hover: #275a45;
+  --color-primary-dark: #214837;
+  --color-primary-soft: rgba(47, 111, 84, 0.13);
+  --color-secondary-ink: #f4fbf6;
+  --color-accent: #8b5e34;
+  --color-error: #b34242;
+  --color-error-soft: #fff1f1;
+  --color-success: #2f855a;
+  --color-success-soft: #e9f7ee;
+  --shadow-sm: 0 1px 2px rgba(22, 49, 39, 0.07);
+  --shadow-md: 0 14px 38px rgba(22, 49, 39, 0.1);
+  --shadow-lg: 0 26px 60px rgba(22, 49, 39, 0.14);
+  color-scheme: light;
+}
+
+:root[data-theme='midnight-bloom'] {
+  --color-bg: #161325;
+  --color-surface: #211c35;
+  --color-ink: #f2ecff;
+  --color-ink-muted: #b6aecd;
+  --color-border: #3b3359;
+  --color-primary: #f472b6;
+  --color-primary-hover: #ec4899;
+  --color-primary-dark: #f9a8d4;
+  --color-primary-soft: rgba(244, 114, 182, 0.15);
+  --color-secondary-ink: #140f22;
+  --color-accent: #f59e0b;
+  --color-error: #fda4af;
+  --color-error-soft: #3a1820;
+  --color-success: #6ee7b7;
+  --color-success-soft: #142d26;
+  --shadow-sm: 0 1px 2px rgba(10, 6, 22, 0.34);
+  --shadow-md: 0 16px 42px rgba(10, 6, 22, 0.46);
+  --shadow-lg: 0 28px 70px rgba(10, 6, 22, 0.56);
+  color-scheme: dark;
+}
+
+:root[data-theme='harbor'] {
+  --color-bg: #eef6fb;
+  --color-surface: #ffffff;
+  --color-ink: #102a43;
+  --color-ink-muted: #627d98;
+  --color-border: #d9e6f2;
+  --color-primary: #0f6c8d;
+  --color-primary-hover: #0b5772;
+  --color-primary-dark: #0a4a60;
+  --color-primary-soft: rgba(15, 108, 141, 0.13);
+  --color-secondary-ink: #f5fbff;
+  --color-accent: #d97706;
+  --color-error: #c2410c;
+  --color-error-soft: #fff1eb;
+  --color-success: #0f766e;
+  --color-success-soft: #e6fffb;
+  --shadow-sm: 0 1px 2px rgba(16, 42, 67, 0.06);
+  --shadow-md: 0 14px 40px rgba(16, 42, 67, 0.1);
+  --shadow-lg: 0 24px 64px rgba(16, 42, 67, 0.14);
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: $color-bg;
+  color: $color-ink;
+  font-family: $font-stack;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+a {
+  color: $color-primary;
+  text-decoration: none;
+}
+
+.btn,
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: none;
+  border-radius: $radius-sm;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    color 0.15s,
+    opacity 0.15s;
+
+  @include m.button-disabled;
+}
+
+.btn-primary,
+.button--primary {
+  background: $color-primary;
+  color: $color-secondary-ink;
+
+  &:hover:not(:disabled) {
+    background: $color-primary-hover;
+  }
+}
+
+.btn-ghost,
+.button--ghost {
+  background: transparent;
+  color: $color-ink-muted;
+
+  &:hover:not(:disabled) {
+    color: $color-ink;
+    background: $color-primary-soft;
+  }
+}
+
+.btn-block {
+  width: 100%;
+  padding: 0.75rem 1rem;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  color: $color-ink;
+  background: color-mix(in srgb, $color-surface 94%, $color-bg);
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease,
+    box-shadow 0.15s ease,
+    color 0.15s ease;
+
+  &::placeholder {
+    color: color-mix(in srgb, $color-ink-muted 84%, transparent);
+  }
+
+  &:focus-visible {
+    outline: none;
+    border-color: color-mix(in srgb, $color-primary 38%, $color-border);
+    box-shadow: 0 0 0 3px color-mix(in srgb, $color-primary-soft 72%, transparent);
+  }
+}
+
+select option {
+  color: $color-ink;
+  background: $color-surface;
+}
