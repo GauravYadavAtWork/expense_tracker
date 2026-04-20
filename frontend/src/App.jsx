@@ -19,12 +19,90 @@ const AUTH_STORAGE_KEY = "expense-tracker-auth";
 const THEME_STORAGE_KEY = "expense-tracker-theme";
 const CATEGORY_OPTIONS = ["Food", "Miscellaneous", "Transport", "Shopping", "Bills", "Health"];
 const THEME_OPTIONS = [
-  { value: "default", label: "Default" },
-  { value: "dark", label: "Dark" },
-  { value: "sunrise", label: "Sunrise" },
-  { value: "forest", label: "Forest" },
-  { value: "midnight-bloom", label: "Midnight Bloom" },
-  { value: "harbor", label: "Harbor" },
+  {
+    value: "default",
+    label: "Default",
+    description: "Clean teal workspace",
+    swatches: ["#0f766e", "#ffffff", "#eef2f6"],
+  },
+  {
+    value: "sunrise",
+    label: "Sunrise",
+    description: "Warm peach and clay",
+    swatches: ["#c96b2c", "#fffdf9", "#fff5ec"],
+  },
+  {
+    value: "forest",
+    label: "Forest",
+    description: "Muted botanical greens",
+    swatches: ["#2f6f54", "#fbfdfb", "#edf4ef"],
+  },
+  {
+    value: "harbor",
+    label: "Harbor",
+    description: "Crisp coastal blues",
+    swatches: ["#0f6c8d", "#ffffff", "#eef6fb"],
+  },
+  {
+    value: "aurora",
+    label: "Aurora",
+    description: "Mint glow and glacier blue",
+    swatches: ["#0f9d94", "#f6fffe", "#e9f7fb"],
+  },
+  {
+    value: "ledger",
+    label: "Ledger",
+    description: "Paper beige and ink",
+    swatches: ["#7c5a3c", "#fffdf7", "#f5efe2"],
+  },
+  {
+    value: "candy-pop",
+    label: "Candy Pop",
+    description: "Playful coral and sky",
+    swatches: ["#ff5d73", "#fffafb", "#e7f7ff"],
+  },
+  {
+    value: "olive-grove",
+    label: "Olive Grove",
+    description: "Soft olive and parchment tones",
+    swatches: ["#6b8e23", "#fffef7", "#f3f0dd"],
+  },
+  {
+    value: "rose-desk",
+    label: "Rose Desk",
+    description: "Dusty rose and cream workspace",
+    swatches: ["#d16d8a", "#fffaf8", "#f9e8ea"],
+  },
+  {
+    value: "dark",
+    label: "Dark",
+    description: "Low-light navy contrast",
+    swatches: ["#5eead4", "#111c2f", "#0b1220"],
+  },
+  {
+    value: "midnight-bloom",
+    label: "Midnight Bloom",
+    description: "Floral pink on deep plum",
+    swatches: ["#f472b6", "#211c35", "#161325"],
+  },
+  {
+    value: "ember",
+    label: "Ember",
+    description: "Copper heat with charcoal",
+    swatches: ["#dd6b20", "#261815", "#130c0a"],
+  },
+  {
+    value: "graphite",
+    label: "Graphite",
+    description: "Steel gray with ice blue accents",
+    swatches: ["#7dd3fc", "#1f2937", "#111827"],
+  },
+  {
+    value: "neon-night",
+    label: "Neon Night",
+    description: "Electric lime against deep ink",
+    swatches: ["#a3e635", "#1a1f2b", "#0c0f16"],
+  },
 ];
 
 function getCurrentTheme() {
@@ -36,10 +114,6 @@ function getMonthKey(date) {
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, "0");
   return `${year}-${month}`;
-}
-
-function getDayKey(date) {
-  return date.toISOString().slice(0, 10);
 }
 
 function startOfWeek(date) {
@@ -150,7 +224,7 @@ function App() {
         setUser(parsed.user);
         setAuthToken(parsed.token);
       }
-    } catch (_error) {
+    } catch {
       window.localStorage.removeItem(AUTH_STORAGE_KEY);
     }
   }, []);
@@ -544,6 +618,29 @@ function DashboardPage({
                       ))}
                     </select>
                   </label>
+                </div>
+                <div className="theme-list" role="list" aria-label="Theme options">
+                  {themeOptions.map((option) => {
+                    const isActive = option.value === theme;
+                    return (
+                      <button
+                        key={option.value}
+                        type="button"
+                        role="listitem"
+                        className={`theme-list-item ${isActive ? "theme-list-item--active" : ""}`}
+                        onClick={() => onThemeChange(option.value)}
+                        aria-pressed={isActive}
+                      >
+                        <span className="theme-list-item__copy">
+                          <strong>{option.label}</strong>
+                          <span>{option.description}</span>
+                        </span>
+                        <span className="theme-list-item__status" aria-hidden="true">
+                          {isActive ? "Active" : "Select"}
+                        </span>
+                      </button>
+                    );
+                  })}
                 </div>
               </section>
             ) : null}
